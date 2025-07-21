@@ -88,6 +88,7 @@ void unionBySize(int u, int v) {
 
 📚  **Reference:** [Tarjan's Algorithm Explained – YouTube](https://www.youtube.com/watch?v=CiDPT1xMKI0&t=908s)
                     [Question solved on - Coding Ninja](https://www.naukri.com/code360/problems/bridges-in-graph_893026?leftPanelTab=0&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbar).
+                    [Leetcode Que Solved which beat 94.32% in runtime](https://leetcode.com/problems/critical-connections-in-a-network/submissions/1705773875/)
 
 
 * ✅ Today, I studied **Bridges in Graph** using **Tarjan’s Algorithm** via **Depth-First Search (DFS)** to identify all **critical connections** in an undirected graph.
