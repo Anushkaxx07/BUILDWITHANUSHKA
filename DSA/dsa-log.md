@@ -81,3 +81,75 @@ void unionBySize(int u, int v) {
 * The main goal of Kruskal’s: **connect all nodes with minimum weight and no cycles** ✅
 
 
+
+---
+
+### 🗓️ July 21, 2025
+
+📚  **Reference:** [Tarjan's Algorithm Explained – YouTube](https://www.youtube.com/watch?v=CiDPT1xMKI0&t=908s)
+                    [Question solved on - Coding Ninja](https://www.naukri.com/code360/problems/bridges-in-graph_893026?leftPanelTab=0&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbar).
+
+
+* ✅ Today, I studied **Bridges in Graph** using **Tarjan’s Algorithm** via **Depth-First Search (DFS)** to identify all **critical connections** in an undirected graph.
+
+---
+
+#### 🔹 What is a Bridge?
+
+* A **bridge** is an edge in a graph whose removal increases the number of connected components.
+* In simple terms, a bridge **does not lie on any cycle** – it is a **critical edge**.
+
+---
+
+#### 🔹 Key Steps
+
+1. Performed DFS traversal and maintained:
+   - `disc[]`: Discovery time of the node
+   - `low[]`: Lowest discovery time reachable from that node (even via back edges)
+   - `parent[]`: To track the parent during DFS
+   - `vis[]`: To mark nodes as visited
+   - A global `timer`: Used to assign unique discovery times
+
+2. For each neighbor of a node:
+   - If it's the parent → skip
+   - If it's already visited → it’s a back edge → update:
+     ```cpp
+     low[node] = min(low[node], disc[neighbour]);
+     ```
+   - If not visited → DFS on it, then backtrack and check:
+     ```cpp
+     if (low[neighbour] > disc[node]) → it's a bridge
+     ```
+     Then update:
+     ```cpp
+     low[node] = min(low[node], low[neighbour]);
+     ```
+
+---
+
+#### 🔹 Code Snippet
+
+```cpp
+void dfs(int node, vector<vector<int>> &adj) {
+    vis[node] = true;
+    disc[node] = low[node] = timer++;
+
+    for (int neighbour : adj[node]) {
+        if (neighbour == parent[node]) continue;
+
+        if (!vis[neighbour]) {
+            parent[neighbour] = node;
+            dfs(neighbour, adj);
+
+            if (low[neighbour] > disc[node]) {
+                // (node, neighbour) is a bridge
+            }
+
+            low[node] = min(low[node], low[neighbour]);
+        } else {
+            low[node] = min(low[node], disc[neighbour]); // back edge
+        }
+    }
+}
+
+
