@@ -153,4 +153,90 @@ void dfs(int node, vector<vector<int>> &adj) {
     }
 }
 
+---
+### 🗓️ July 21, 2025
+
+📚  **Reference:** [Articulation Poitn Explained – YouTube](https://www.youtube.com/watch?v=fqkqx6OBRDE&list=PLDzeHZWIZsTobi35C3I-tKB3tRDX6YxuA&index=15)
+                    [Question solved on - GFG](https://www.geeksforgeeks.org/problems/articulation-point-1/1).
+                  
+---
+
+### ✅ **What I Learned Today:**
+
+🧠 **Definition:**
+An **Articulation Point** (or Cut Vertex) is a vertex in a graph such that **removing it increases the number of connected components** — in simple terms, it disconnects the graph.
+
+🛠️ **Approach Used: Tarjan's Algorithm**
+
+We use the following data structures:
+- `disc[]`: Discovery time of each node
+- `low[]`: Lowest discovery time reachable from the node
+- `parent[]`: To keep track of the DFS parent
+- `visited[]`: To mark visited nodes
+- `set<int> ap`: To store articulation points (avoids duplicates)
+- `adjacency list`: To represent the graph
+
+We maintain a global `timer` to assign discovery times.
+
+---
+
+### 🔁 **DFS Steps Breakdown:**
+
+1. Initialize:  
+   - `disc[node] = low[node] = timer++`  
+   - `children = 0`
+
+2. For each adjacent node:
+   - **Case 1: If already visited**
+     - If it's the **parent**, skip.
+     - Else, it's a **back edge** → update:
+       ```cpp
+       low[node] = min(low[node], disc[neighbour]);
+       ```
+
+   - **Case 2: If not visited**
+     - `children++`
+     - `parent[neighbour] = node`
+     - `visited[neighbour] = true`
+     - DFS call: `dfs(neighbour, ...)`
+     - After DFS:
+       ```cpp
+       low[node] = min(low[node], low[neighbour]);
+       ```
+
+     - Check articulation condition (non-root):
+       ```cpp
+       if (parent[node] != -1 && low[neighbour] >= disc[node])
+           ap.insert(node);
+       ```
+
+3. After loop (for root nodes):
+   ```cpp
+   if (parent[node] == -1 && children >= 2)
+       ap.insert(node);
+   ```
+
+---
+
+### 🧾 Final Step:
+Convert the set to vector and return:
+```cpp
+vector<int> ans(ap.begin(), ap.end());
+return ans;
+```
+
+---
+
+### 📌 Summary:
+
+> Tarjan’s algorithm efficiently finds articulation points using DFS and `low` / `disc` arrays. Root nodes have a separate condition, and a `set` ensures unique articulation points.
+
+---
+
+### 💡 Concept Mastered:
+- Articulation Point Detection ✅  
+- Back Edges in DFS ✅  
+- Tarjan’s Algo Implementation ✅  
+
+---
 
