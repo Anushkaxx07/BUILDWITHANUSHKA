@@ -154,7 +154,7 @@ void dfs(int node, vector<vector<int>> &adj) {
 }
 
 ---
-### 🗓️ July 21, 2025
+### 🗓️ July 22, 2025
 
 📚  **Reference:** [Articulation Poitn Explained – YouTube](https://www.youtube.com/watch?v=fqkqx6OBRDE&list=PLDzeHZWIZsTobi35C3I-tKB3tRDX6YxuA&index=15)
                     [Question solved on - GFG](https://www.geeksforgeeks.org/problems/articulation-point-1/1).
@@ -240,3 +240,69 @@ return ans;
 
 ---
 
+
+📚 **Reference:** [Kosaraju's Algorithm Explained – YouTube](https://www.youtube.com/watch?v=ndfjV_yHpgQ&t=169s)
+                    [Question solved on - Coding Ninja which eats 99.8% in tc](https://www.naukri.com/code360/problems/count-strongly-connected-components-kosaraju-s-algorithm_1171151?leftPanelTab=0&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbar&leftPanelTabValue=SUBMISSION).
+
+---
+
+### 🗓️ July 23, 2025
+
+## 🔁 Kosaraju's Algorithm - Strongly Connected Components (SCC)
+
+Today, I learned and implemented **Kosaraju’s Algorithm** to find the **Strongly Connected Components (SCCs)** in a directed graph.
+
+### 🧠 Concept
+
+A **Strongly Connected Component** (SCC) in a directed graph is a **maximal subset of vertices** such that **every vertex is reachable from every other vertex in the same subset**, and vice versa.
+
+In simpler terms:
+> From any node in an SCC, we can reach every other node in that SCC, and also return back to the original node.
+
+---
+
+### 🚀 Approach using Kosaraju's Algorithm
+
+Kosaraju’s algorithm uses **2 DFS traversals** and works in **3 main steps**:
+
+1. **Topological Ordering using DFS + Stack**
+   - Perform a DFS traversal of the original graph and push each node into a stack **after its DFS call finishes**.
+   - This stack stores nodes in **order of finishing time** (i.e., reverse topological order).
+
+2. **Transpose the Graph**
+   - Reverse the direction of all edges in the graph. This is called the **transpose** of the graph.
+
+3. **DFS on Transposed Graph (in Stack Order)**
+   - Pop nodes one by one from the stack.
+   - For every unvisited node, perform DFS on the transposed graph.
+   - Each such DFS call will give us **one strongly connected component**.
+
+---
+
+### 💡 Key Insight
+
+> The number of DFS calls on the transposed graph (after popping from the stack) gives us the **total number of SCCs**.
+
+---
+
+### ✅ Time & Space Complexity
+
+- **Time Complexity:** `O(V + E)`  
+- **Space Complexity:** `O(V + E)`
+
+Where `V` is the number of vertices and `E` is the number of edges.
+
+---
+
+### 📌 Summary
+
+Kosaraju's Algorithm is a powerful and efficient method to identify SCCs in any directed graph. Its logic builds upon DFS, stack (for finish time), and graph transposition.
+
+---
+
+### 📂 Personal Reflection
+
+I found the idea of **reversing the graph** and using **finish times from DFS** very intuitive once I visualized it. Implementing this helped me deeply understand how reachability works in directed graphs.
+
+> 📚 Learning Outcome:  
+> *From any node A, if I can go to B and then return from B to A — this symmetry of reachability defines a strongly connected component.*
