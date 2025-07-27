@@ -1,7 +1,7 @@
 ```
 📅 Date: 25th July  
 📘 Topic: Tree Traversals (Inorder, Preorder, Postorder, Level Order)
-Reference:Video lecture (https://www.youtube.com/watch?v=5NiXlPrLslg&list=PLDzeHZWIZsTo87y1ytEAqp7wYlEP3nner)
+📚 **Reference:** [Kruskal's Algorithm Explained – YouTube](https://www.youtube.com/watch?v=5NiXlPrLslg&list=PLDzeHZWIZsTo87y1ytEAqp7wYlEP3nner)
 Question: Leetcode(inorder,preorder,postorder)
 
 -----------------------------------------------------
